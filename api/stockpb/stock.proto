@@ -1,0 +1,32 @@
+syntax = "proto3";
+package stockpb;
+
+option go_package = "github.com/cocopanda-dev/gorder-v2/common/genproto/stockpb";
+
+import "api/orderpb/order.proto";
+
+service StockService {
+  rpc GetItems(GetItemRequest) returns (GetItemsResponse);
+  rpc CheckIfItemsInStock(CheckIfItemsInStockRequest) returns (checkIfItemsInStockResponse);
+}
+
+message GetItemRequest {
+  repeated string ItemIDs = 1;
+}
+
+message GetItemsResponse {
+  repeated orderpb.Item Items = 1;
+}
+
+message CheckIfItemsInStockRequest {
+  repeated orderpb.ItemWithQuantity Items = 1;
+}
+
+message checkIfItemsInStockResponse {
+  int32 InStock = 1;
+  repeated orderpb.Item Items = 2;
+}
+
+
+
+
