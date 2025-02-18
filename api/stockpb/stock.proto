@@ -3,7 +3,7 @@ package stockpb;
 
 option go_package = "github.com/cocopanda-dev/gorder-v2/common/genproto/stockpb";
 
-import "api/orderpb/order.proto";
+import "orderpb/order.proto";
 
 service StockService {
   rpc GetItems(GetItemRequest) returns (GetItemsResponse);

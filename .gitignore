@@ -1,0 +1,30 @@
+# Binaries
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# test binary, built with `go test -c`
+*.test
+
+# output of the go command
+*.out
+
+# Dependencies
+#vendor
+
+# Go workspaces file
+go.work
+go.work.sum
+
+# env file
+.env
+.idea
+.DS_Store
+
+# OS generated files
+.gobincache/
+**/tmp/
+**/bin/
