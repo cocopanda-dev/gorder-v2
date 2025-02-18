@@ -1,10 +1,13 @@
 package main
 
 import (
+	"github.com/cocopanda-dev/gorder-v2/order/app"
 	"github.com/gin-gonic/gin"
 )
 
-type HTTPServer struct{}
+type HTTPServer struct {
+	app app.Application
+}
 
 func (H HTTPServer) PostCustomerCustomerIDOrder(c *gin.Context, customerID string) {
 	//TODO implement me
