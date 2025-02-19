@@ -10,9 +10,9 @@ servers:
         default: 127.0.0.1
 
 paths:
-  /customer/{customerID}/order/{orderID}:
+  /customer/{customerID}/orders/{orderID}:
     get:
-      description: "get order"
+      description: "get orders"
       parameters:
         - in: path
           name: customerID
