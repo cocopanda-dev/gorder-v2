@@ -17,8 +17,8 @@ type ServerInterface interface {
 	// (POST /customer/{customerID}/order)
 	PostCustomerCustomerIDOrder(c *gin.Context, customerID string)
 
-	// (GET /customer/{customerID}/order/{orderID})
-	GetCustomerCustomerIDOrderOrderID(c *gin.Context, customerID string, orderID string)
+	// (GET /customer/{customerID}/orders/{orderID})
+	GetCustomerCustomerIDOrdersOrderID(c *gin.Context, customerID string, orderID string)
 }
 
 // ServerInterfaceWrapper converts contexts to parameters.
@@ -54,8 +54,8 @@ func (siw *ServerInterfaceWrapper) PostCustomerCustomerIDOrder(c *gin.Context) {
 	siw.Handler.PostCustomerCustomerIDOrder(c, customerID)
 }
 
-// GetCustomerCustomerIDOrderOrderID operation middleware
-func (siw *ServerInterfaceWrapper) GetCustomerCustomerIDOrderOrderID(c *gin.Context) {
+// GetCustomerCustomerIDOrdersOrderID operation middleware
+func (siw *ServerInterfaceWrapper) GetCustomerCustomerIDOrdersOrderID(c *gin.Context) {
 
 	var err error
 
@@ -84,7 +84,7 @@ func (siw *ServerInterfaceWrapper) GetCustomerCustomerIDOrderOrderID(c *gin.Cont
 		}
 	}
 
-	siw.Handler.GetCustomerCustomerIDOrderOrderID(c, customerID, orderID)
+	siw.Handler.GetCustomerCustomerIDOrdersOrderID(c, customerID, orderID)
 }
 
 // GinServerOptions provides options for the Gin server.
@@ -115,5 +115,5 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 	}
 
 	router.POST(options.BaseURL+"/customer/:customerID/order", wrapper.PostCustomerCustomerIDOrder)
-	router.GET(options.BaseURL+"/customer/:customerID/order/:orderID", wrapper.GetCustomerCustomerIDOrderOrderID)
+	router.GET(options.BaseURL+"/customer/:customerID/orders/:orderID", wrapper.GetCustomerCustomerIDOrdersOrderID)
 }

@@ -94,8 +94,8 @@ type ClientInterface interface {
 
 	PostCustomerCustomerIDOrder(ctx context.Context, customerID string, body PostCustomerCustomerIDOrderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetCustomerCustomerIDOrderOrderID request
-	GetCustomerCustomerIDOrderOrderID(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetCustomerCustomerIDOrdersOrderID request
+	GetCustomerCustomerIDOrdersOrderID(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) PostCustomerCustomerIDOrderWithBody(ctx context.Context, customerID string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -122,8 +122,8 @@ func (c *Client) PostCustomerCustomerIDOrder(ctx context.Context, customerID str
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetCustomerCustomerIDOrderOrderID(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCustomerCustomerIDOrderOrderIDRequest(c.Server, customerID, orderID)
+func (c *Client) GetCustomerCustomerIDOrdersOrderID(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetCustomerCustomerIDOrdersOrderIDRequest(c.Server, customerID, orderID)
 	if err != nil {
 		return nil, err
 	}
@@ -181,8 +181,8 @@ func NewPostCustomerCustomerIDOrderRequestWithBody(server string, customerID str
 	return req, nil
 }
 
-// NewGetCustomerCustomerIDOrderOrderIDRequest generates requests for GetCustomerCustomerIDOrderOrderID
-func NewGetCustomerCustomerIDOrderOrderIDRequest(server string, customerID string, orderID string) (*http.Request, error) {
+// NewGetCustomerCustomerIDOrdersOrderIDRequest generates requests for GetCustomerCustomerIDOrdersOrderID
+func NewGetCustomerCustomerIDOrdersOrderIDRequest(server string, customerID string, orderID string) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -204,7 +204,7 @@ func NewGetCustomerCustomerIDOrderOrderIDRequest(server string, customerID strin
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/customer/%s/order/%s", pathParam0, pathParam1)
+	operationPath := fmt.Sprintf("/customer/%s/orders/%s", pathParam0, pathParam1)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -270,8 +270,8 @@ type ClientWithResponsesInterface interface {
 
 	PostCustomerCustomerIDOrderWithResponse(ctx context.Context, customerID string, body PostCustomerCustomerIDOrderJSONRequestBody, reqEditors ...RequestEditorFn) (*PostCustomerCustomerIDOrderResponse, error)
 
-	// GetCustomerCustomerIDOrderOrderIDWithResponse request
-	GetCustomerCustomerIDOrderOrderIDWithResponse(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*GetCustomerCustomerIDOrderOrderIDResponse, error)
+	// GetCustomerCustomerIDOrdersOrderIDWithResponse request
+	GetCustomerCustomerIDOrdersOrderIDWithResponse(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*GetCustomerCustomerIDOrdersOrderIDResponse, error)
 }
 
 type PostCustomerCustomerIDOrderResponse struct {
@@ -297,7 +297,7 @@ func (r PostCustomerCustomerIDOrderResponse) StatusCode() int {
 	return 0
 }
 
-type GetCustomerCustomerIDOrderOrderIDResponse struct {
+type GetCustomerCustomerIDOrdersOrderIDResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Order
@@ -305,7 +305,7 @@ type GetCustomerCustomerIDOrderOrderIDResponse struct {
 }
 
 // Status returns HTTPResponse.Status
-func (r GetCustomerCustomerIDOrderOrderIDResponse) Status() string {
+func (r GetCustomerCustomerIDOrdersOrderIDResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -313,7 +313,7 @@ func (r GetCustomerCustomerIDOrderOrderIDResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetCustomerCustomerIDOrderOrderIDResponse) StatusCode() int {
+func (r GetCustomerCustomerIDOrdersOrderIDResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -337,13 +337,13 @@ func (c *ClientWithResponses) PostCustomerCustomerIDOrderWithResponse(ctx contex
 	return ParsePostCustomerCustomerIDOrderResponse(rsp)
 }
 
-// GetCustomerCustomerIDOrderOrderIDWithResponse request returning *GetCustomerCustomerIDOrderOrderIDResponse
-func (c *ClientWithResponses) GetCustomerCustomerIDOrderOrderIDWithResponse(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*GetCustomerCustomerIDOrderOrderIDResponse, error) {
-	rsp, err := c.GetCustomerCustomerIDOrderOrderID(ctx, customerID, orderID, reqEditors...)
+// GetCustomerCustomerIDOrdersOrderIDWithResponse request returning *GetCustomerCustomerIDOrdersOrderIDResponse
+func (c *ClientWithResponses) GetCustomerCustomerIDOrdersOrderIDWithResponse(ctx context.Context, customerID string, orderID string, reqEditors ...RequestEditorFn) (*GetCustomerCustomerIDOrdersOrderIDResponse, error) {
+	rsp, err := c.GetCustomerCustomerIDOrdersOrderID(ctx, customerID, orderID, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetCustomerCustomerIDOrderOrderIDResponse(rsp)
+	return ParseGetCustomerCustomerIDOrdersOrderIDResponse(rsp)
 }
 
 // ParsePostCustomerCustomerIDOrderResponse parses an HTTP response from a PostCustomerCustomerIDOrderWithResponse call
@@ -379,15 +379,15 @@ func ParsePostCustomerCustomerIDOrderResponse(rsp *http.Response) (*PostCustomer
 	return response, nil
 }
 
-// ParseGetCustomerCustomerIDOrderOrderIDResponse parses an HTTP response from a GetCustomerCustomerIDOrderOrderIDWithResponse call
-func ParseGetCustomerCustomerIDOrderOrderIDResponse(rsp *http.Response) (*GetCustomerCustomerIDOrderOrderIDResponse, error) {
+// ParseGetCustomerCustomerIDOrdersOrderIDResponse parses an HTTP response from a GetCustomerCustomerIDOrdersOrderIDWithResponse call
+func ParseGetCustomerCustomerIDOrdersOrderIDResponse(rsp *http.Response) (*GetCustomerCustomerIDOrdersOrderIDResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetCustomerCustomerIDOrderOrderIDResponse{
+	response := &GetCustomerCustomerIDOrdersOrderIDResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
