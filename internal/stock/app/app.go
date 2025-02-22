@@ -1,10 +1,16 @@
 package app
 
+import "github.com/cocopanda-dev/gorder-v2/stock/app/query"
+
 type Application struct {
+	Commands Commands
+	Queries  Queries
 }
 
-type Command struct {
+type Commands struct {
 }
 
 type Queries struct {
+	CheckIfItemsInStock query.CheckIfItemsInStockHandler
+	GetItems            query.GetItemsHandler
 }

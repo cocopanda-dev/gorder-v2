@@ -15,10 +15,22 @@ type MemoryStockRepository struct {
 
 var stub = map[string]*orderpb.Item{
 	"item_id": {
-		Id:       "foo_item",
+		ID:       "foo_item",
 		Name:     "stub item",
 		Quantity: 10000,
 		PriceID:  "stub_item_price_id",
+	},
+	"item-1": {
+		ID:       "item1",
+		Name:     "stub item 1",
+		Quantity: 3000,
+		PriceID:  "stub_item_price_id_1",
+	},
+	"item-2": {
+		ID:       "item2",
+		Name:     "stub item 2",
+		Quantity: 2300,
+		PriceID:  "stub_item_price_id_2",
 	},
 }
 
@@ -28,7 +40,7 @@ func NewMemoryStockRepository() *MemoryStockRepository {
 		store: stub,
 	}
 }
-func (m MemoryStockRepository) GetItems(ctx context.Context, ids []string) ([]*orderpb.Item, error) {
+func (m *MemoryStockRepository) GetItems(ctx context.Context, ids []string) ([]*orderpb.Item, error) {
 	m.lock.RLock()
 	defer m.lock.RUnlock()
 

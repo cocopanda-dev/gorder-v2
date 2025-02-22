@@ -29,7 +29,7 @@ func NewMemoryOrderRepository() *MemoryOrderRepository {
 	}
 }
 
-func (m MemoryOrderRepository) Create(_ context.Context, order *domain.Order) (*domain.Order, error) {
+func (m *MemoryOrderRepository) Create(_ context.Context, order *domain.Order) (*domain.Order, error) {
 	m.lock.Lock()
 	defer m.lock.Unlock()
 
@@ -48,7 +48,7 @@ func (m MemoryOrderRepository) Create(_ context.Context, order *domain.Order) (*
 	return res, nil
 }
 
-func (m MemoryOrderRepository) Get(_ context.Context, id, customerID string) (*domain.Order, error) {
+func (m *MemoryOrderRepository) Get(_ context.Context, id, customerID string) (*domain.Order, error) {
 	m.lock.RLock()
 	defer m.lock.RUnlock()
 
@@ -64,7 +64,7 @@ func (m MemoryOrderRepository) Get(_ context.Context, id, customerID string) (*d
 	}
 }
 
-func (m MemoryOrderRepository) Update(ctx context.Context, order *domain.Order, updateFn func(context.Context, *domain.Order) (*domain.Order, error)) error {
+func (m *MemoryOrderRepository) Update(ctx context.Context, order *domain.Order, updateFn func(context.Context, *domain.Order) (*domain.Order, error)) error {
 	m.lock.Lock()
 	defer m.lock.Unlock()
 

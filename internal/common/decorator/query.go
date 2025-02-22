@@ -7,7 +7,6 @@ import (
 
 // QueryHandler defines a generic type that receives a Query Q,
 // and returns a Result R
-
 type QueryHandler[Q, R any] interface {
 	Handle(ctx context.Context, query Q) (R, error)
 }

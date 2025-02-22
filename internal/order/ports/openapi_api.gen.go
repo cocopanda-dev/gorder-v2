@@ -14,8 +14,8 @@ import (
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
 
-	// (POST /customer/{customerID}/order)
-	PostCustomerCustomerIDOrder(c *gin.Context, customerID string)
+	// (POST /customer/{customerID}/orders)
+	PostCustomerCustomerIDOrders(c *gin.Context, customerID string)
 
 	// (GET /customer/{customerID}/orders/{orderID})
 	GetCustomerCustomerIDOrdersOrderID(c *gin.Context, customerID string, orderID string)
@@ -30,8 +30,8 @@ type ServerInterfaceWrapper struct {
 
 type MiddlewareFunc func(c *gin.Context)
 
-// PostCustomerCustomerIDOrder operation middleware
-func (siw *ServerInterfaceWrapper) PostCustomerCustomerIDOrder(c *gin.Context) {
+// PostCustomerCustomerIDOrders operation middleware
+func (siw *ServerInterfaceWrapper) PostCustomerCustomerIDOrders(c *gin.Context) {
 
 	var err error
 
@@ -51,7 +51,7 @@ func (siw *ServerInterfaceWrapper) PostCustomerCustomerIDOrder(c *gin.Context) {
 		}
 	}
 
-	siw.Handler.PostCustomerCustomerIDOrder(c, customerID)
+	siw.Handler.PostCustomerCustomerIDOrders(c, customerID)
 }
 
 // GetCustomerCustomerIDOrdersOrderID operation middleware
@@ -114,6 +114,6 @@ func RegisterHandlersWithOptions(router gin.IRouter, si ServerInterface, options
 		ErrorHandler:       errorHandler,
 	}
 
-	router.POST(options.BaseURL+"/customer/:customerID/order", wrapper.PostCustomerCustomerIDOrder)
+	router.POST(options.BaseURL+"/customer/:customerID/orders", wrapper.PostCustomerCustomerIDOrders)
 	router.GET(options.BaseURL+"/customer/:customerID/orders/:orderID", wrapper.GetCustomerCustomerIDOrdersOrderID)
 }

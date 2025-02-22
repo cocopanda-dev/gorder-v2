@@ -3,11 +3,12 @@ package stock
 import (
 	"context"
 	"fmt"
+	"github.com/cocopanda-dev/gorder-v2/common/genproto/orderpb"
 	"strings"
 )
 
 type Repository interface {
-	GetItems(ctx context.Context, ids []string) ([]Item, error)
+	GetItems(ctx context.Context, ids []string) ([]*orderpb.Item, error)
 }
 
 type NotFoundError struct {

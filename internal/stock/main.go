@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/cocopanda-dev/gorder-v2/common/config"
 	"github.com/cocopanda-dev/gorder-v2/common/genproto/stockpb"
 	"github.com/cocopanda-dev/gorder-v2/common/server"

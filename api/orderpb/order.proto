@@ -26,7 +26,7 @@ message ItemWithQuantity {
 }
 
 message Item {
-  string Id = 1;
+  string ID = 1;
   string Name = 2;
   int32 Quantity = 3;
   string PriceID = 4;
