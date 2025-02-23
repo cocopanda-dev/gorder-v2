@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"github.com/cocopanda-dev/gorder-v2/common/discovery"
 
 	"github.com/cocopanda-dev/gorder-v2/common/config"
 	"github.com/cocopanda-dev/gorder-v2/common/genproto/stockpb"
@@ -27,6 +28,14 @@ func main() {
 	defer cancel()
 
 	application := service.NewApplication(ctx)
+
+	deregisterFunc, err := discovery.RegisterToConsul(ctx, serviceName)
+	if err != nil {
+		logrus.Fatal(err)
+	}
+	defer func() {
+		_ = deregisterFunc()
+	}()
 
 	switch serverType {
 	case "grpc":
