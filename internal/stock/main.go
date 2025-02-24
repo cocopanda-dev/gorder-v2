@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"github.com/cocopanda-dev/gorder-v2/common/discovery"
+	"github.com/cocopanda-dev/gorder-v2/common/logging"
 
 	"github.com/cocopanda-dev/gorder-v2/common/config"
 	"github.com/cocopanda-dev/gorder-v2/common/genproto/stockpb"
@@ -15,6 +16,7 @@ import (
 )
 
 func init() {
+	logging.Init()
 	if err := config.NewViperConfig(); err != nil {
 		logrus.Fatal(err)
 	}
@@ -22,7 +24,7 @@ func init() {
 
 func main() {
 	serviceName := viper.GetString("stock.service-name")
-	serverType := viper.GetString("stock.service-to-run")
+	serverType := viper.GetString("stock.server-to-run")
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
